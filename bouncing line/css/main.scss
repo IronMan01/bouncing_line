@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(29, 29, 29);
+    display: grid;
+    place-content: center;
+    overflow: hidden;
+}
+
+svg{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    margin: 0;
+    display: block;
+}
+path{
+    stroke: mediumorchid;
+    fill: none;
+}
+h1{
+    font-size: 5rem;
+    color: rgb(159, 194, 182);
+    font-family: "poppins";
+    pointer-events: none;
+
+    &::before{
+        content: "BOUNCY";
+        position: absolute;
+        top: 32%;
+        left: 4%;
+        font-size: 13rem;
+        color: rgb(32, 32, 32);
+        z-index: -2;
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bouncing Line</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <h1>The Bouncy Line</h1>
+    <svg viewbox=" 0 0 500 500" preservespectratio="xMidYMid meet">
+      <path d="M250, 0, Q250, 250, 250, 500 " />
+    </svg>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const path = document.querySelector("path");
+      let coords = {
+        x: 0,
+        y: 0,
+      };
+
+      let width = 0;
+
+      document.addEventListener("mousemove", (event) => {
+        coords.x = event.clientX;
+        coords.y = event.clientY;
+
+        width = coords.x / window.innerWidth;
+
+        console.log(width.toFixed(1));
+
+        updateCoords(coords);
+      });
+      document.addEventListener("mouseout", (event) => {
+        gsap.to(path, {
+          ease: Elastic.easeOut.config(1, 0.3),
+          attr: { d: "M250, 0 Q250, 250 250, 500" },
+        });
+      });
+
+      function updateCoords(coords) {
+        coords.x = width * 500;
+        path.setAttribute("d", `M250, 0 Q${coords.x}, ${coords.y} 250, 500`);
+      }
+    </script>
+  </body>
+</html>
